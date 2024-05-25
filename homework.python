@@ -1,0 +1,114 @@
+#Q1
+#A
+x = ['HTTP', 'HTTPS', 'FTP','DNS']
+y = [80,443,21,53]
+z= dict (zip(x,y))
+print (z)
+
+#B
+num = int (input("enter a number :"))
+result=1
+for i in range(1,num +1):
+    result *= i
+print (f"the factorial of {num} is {result}"
+#c
+
+L = ['NETWORK','BIO','PROGRAME','PHYSICS','MUSIC']
+for x in L:
+    if x.startswith('B'):
+        print(x)
+#D
+d = {i: i +1 for i in range (11)}
+print (d)
+#Q2
+
+b = list (input("input binary number :"))
+x = 0
+for i in range (len(b)):
+    digit = b.pop()
+   if digit == '1' :
+  x == x + pow(2, i)
+   print("the decimal value of number " , x)
+
+#Q3
+import csv
+
+def ask_questions(questions):
+    score = 0
+    total_questions = len(questions)
+    for i, (question, answer) in enumerate(questions, 1):
+        print(f"Question {i}: {question}")
+        user_answer = input("Your answer: ").strip()
+        if user_answer.lower() == answer.lower():
+            score += 1
+    return score, total_questions
+
+def save_result(user_name, score, total_questions, file_name):
+    with open(file_name, 'a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([user_name, score, total_questions])
+
+def main():
+    user_name = input("Enter your name: ")
+    questions = [
+        ("What is the largest country", "russia"),
+        ("what color is the sea ?", "blue"),
+     
+    ]
+    score, total_questions = ask_questions(questions)
+    print(f"Your score: {score}/{total_questions}")
+    save_result(user_name, score, total_questions, 'results.csv')
+
+if __name__ == "__main__":
+    main()
+
+#Q4
+
+class BankAccount:
+    def __init__(self, account_number, account_holder, balance=0.0):
+        self.account_number = account_number
+        self.account_holder = account_holder
+        self.balance = balance
+
+    def deposit(self, amount):
+        self.balance += amount
+        print(f"Deposited ${amount}. Current balance: ${self.balance}")
+
+    def withdraw(self, amount):
+        if amount <= self.balance:
+            self.balance -= amount
+            print(f"Withdrew ${amount}. Current balance: ${self.balance}")
+        else:
+            print("Insufficient funds.")
+
+    def get_balance(self):
+        return self.balance
+
+
+class SavingsAccount(BankAccount):
+    def __init__(self, account_number, account_holder, balance=0.0, interest_rate=0.0):
+        super().__init__(account_number, account_holder, balance)
+        self.interest_rate = interest_rate
+
+    def apply_interest(self):
+        interest = self.balance * (self.interest_rate / 100)
+        self.balance += interest
+        print(f"Interest applied. Current balance: ${self.balance}")
+
+    def __str__(self):
+        return f"Account holder: {self.account_holder}, Balance: ${self.balance}, Interest rate: {self.interest_rate}%"
+
+
+bank_account = BankAccount("55555", "Mohammad")
+bank_account.deposit(1000)
+bank_account.withdraw(500)
+print(f"Final balance: ${bank_account.get_balance()}")
+
+savings_account = SavingsAccount("66666", "Ahmad", interest_rate=1.5)
+savings_account.deposit(1000)
+savings_account.apply_interest()
+print(savings_account)
+
+
+
+       
